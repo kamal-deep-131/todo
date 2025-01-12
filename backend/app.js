@@ -14,4 +14,8 @@ app.get("/", (req, res) => {
 import authRoutes from "./routes/auth.routes.js";
 app.use("/api/v1/auth", authRoutes);
 
+//todo routes 
+import todoRoutes from "./routes/todo.routes.js";
+app.use("/api/v1/todo", todoRoutes);
+
 export default app;
