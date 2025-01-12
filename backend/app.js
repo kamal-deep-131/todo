@@ -3,8 +3,15 @@ import "dotenv/config";
 
 const app = express();
 
+// middelware to parse json 
+app.use(express.json());
+
 app.get("/", (req, res) => {
     res.send("Hello World!")
 })
+
+//auth routes
+import authRoutes from "./routes/auth.routes.js";
+app.use("/api/v1/auth", authRoutes);
 
 export default app;
