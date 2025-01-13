@@ -1,9 +1,13 @@
 import React from 'react'
-import './Navbar.css'
+import { Link } from 'react-router-dom'
+
 
 const Navbar = () => {
     return (
-        <div>Navbar</div>
+        <h1 className="text-3xl font-bold underline">
+            Hello world!
+            <button class="btn">Button</button>
+        </h1>
     )
 }
 
