@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { InputField } from '../components'
+
 import { Link } from 'react-router-dom'
 
-const Login = () => {
 
+const Register = () => {
     const [formData, setFormData] = useState({
+        name: "",
         email: "",
         password: "",
     })
@@ -14,13 +16,19 @@ const Login = () => {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
-    const handleSubmit = () => { }
 
+    const handleSubmit = () => { }
     return (
         <section className='w-full h-full'>
-            <div className='w-full  md:w-2/4 mx-auto my-8 p-6  rounded flex flex-col items-center justify-center gap-4 md:shadow-lg  md:border md:border-gray-600'>
-                <h1 className='text-4xl font-bold'>Login</h1>
-                <form className='w-full flex flex-col gap-4' onSubmit={handleSubmit}>
+            <div className='w-full  md:w-2/4 mx-auto my-8 p-6   rounded flex flex-col items-center justify-center gap-6 md:shadow-lg  md:border md:border-gray-600'>
+                <h1 className='text-4xl font-bold'>Register</h1>
+                <form className='w-full flex flex-col gap-4 md:gap-6' onSubmit={handleSubmit} >
+                    <InputField
+                        label="Name"
+                        name="name"
+                        placeholder={"Kamal Deep"}
+                        onChange={handleChange}
+                        type="text" />
                     <InputField
                         label="Email"
                         name="email"
@@ -33,16 +41,16 @@ const Login = () => {
                         placeholder={"**********"}
                         onChange={handleChange}
                         type="password" />
-
                     <div className='w-full text-base'>
                         <Link className='text-center text-error ' to="/forgot-password" >Forgot Password ?</Link>
                     </div>
-
-                    <button className='w-full bg-primary text-white font-medium text-lg rounded p-2'>{
-                        loading ? "Saving.." : "Login"
-                    }</button>
+                    <button className='w-full bg-primary text-white text-lg font-medium rounded p-2'>
+                        {
+                            loading ? "Saving.." : "Register"
+                        }
+                    </button>
                     <div className='w-full text-base'>
-                        <p className='text-center'>Don't have an account? <Link to="/register" className='text-primary font-medium'>Register</Link></p>
+                        <p className='text-center'>Already have an account? <Link to="/login" className='text-primary font-medium'>Login</Link></p>
                     </div>
                 </form>
             </div>
@@ -50,4 +58,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register
