@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 
 const Navbar = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     return (
         <header className="navbar bg-base-100">
