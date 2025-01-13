@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext';
 
 
 const Navbar = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const { isLoggedIn, logout } = useContext(AuthContext);
 
     return (
         <header className="navbar bg-base-100">
@@ -26,7 +27,7 @@ const Navbar = () => {
                             <li><a>Change password</a></li>
                             <li><a>Forgot password</a></li>
                             <li><a>Add task</a></li>
-                            <li><a>Logout</a></li>
+                            <li onClick={logout}><p>Logout</p></li>
                         </ul>
                     </div>
                 ) :

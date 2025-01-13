@@ -5,6 +5,7 @@ import './index.css'
 import { Toaster } from "react-hot-toast"
 import { Home, Login, Register, ForgotPassword, ChangePassword } from './pages'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,8 +20,8 @@ const router = createBrowserRouter(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <>
+  <AuthProvider>
     <RouterProvider router={router} />
     <Toaster />
-  </>
+  </AuthProvider>
 )
