@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { InputField } from '../components'
 import { toast } from "react-hot-toast"
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
+import { AuthContext } from '../context/AuthContext'
 
 
 const Register = () => {
@@ -15,6 +16,7 @@ const Register = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    const { setIsLoggedIn } = useContext(AuthContext)
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -34,11 +36,10 @@ const Register = () => {
             try {
                 setLoading(true)
                 const response = await axios.post(`${baseUrl}/auth/register`, formData)
-                // localStorage.setItem("token", response?.data?.token)
-                console.log("token", response?.data?.token)
-                // localStorage.setItem("user", JSON.stringify(response?.data?.user))
-                console.log("user", JSON.stringify(response?.data?.user))
-                toast.success("Login Successful")
+                localStorage.setItem("token", response?.data?.token)
+                localStorage.setItem("user", JSON.stringify(response?.data?.user))
+                toast.success("Register Successful")
+                setIsLoggedIn(true)
                 navigate("/")
                 setFormData({ name: "", email: "", password: "" })
                 setLoading(false)

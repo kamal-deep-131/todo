@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { InputField } from '../components'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { toast } from "react-hot-toast"
+import { AuthContext } from '../context/AuthContext'
 
 const Login = () => {
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    const { setIsLoggedIn } = useContext(AuthContext)
 
     const [formData, setFormData] = useState({
         email: "",
@@ -34,6 +36,7 @@ const Login = () => {
                 localStorage.setItem("user", JSON.stringify(response.data.user))
                 setLoading(false)
                 toast.success("Login Successfully")
+                setIsLoggedIn(true)
                 navigate("/")
                 setFormData({ email: "", password: "" })
             }

@@ -24,9 +24,9 @@ const Navbar = () => {
                         <ul
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                            <li><a>Change password</a></li>
-                            <li><a>Forgot password</a></li>
-                            <li><a>Add task</a></li>
+                            <li><Link to={"/change-password"}>Change password</Link></li>
+                            <li><Link to={"/forgot-password"}>Forgot password</Link></li>
+                            <li><Link to={"/"}>Add task</Link></li>
                             <li onClick={logout}><p>Logout</p></li>
                         </ul>
                     </div>

@@ -2,19 +2,18 @@ import Todo from "../model/todo.model.js";
 
 const addTask = async (req, res) => {
     try {
-        const { title, description } = req.body;
+        const { title } = req.body;
 
-        if (!title || !description) {
+        if (!title) {
             return res.status(400).json({
                 success: false,
-                message: "All fields are required"
+                message: "Please Enter Task"
             })
         }
 
         const newTodo = await Todo.create({
             user: req.user.id, // `authMiddleware` sets req.user
-            title,
-            description,
+            title
         });
 
         await newTodo.save();
