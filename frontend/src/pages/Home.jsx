@@ -28,8 +28,7 @@ const Home = () => {
             const response = await axios.get(`${baseUrl}/todo`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            console.log("Response from fetchTasks: ", response)
-            // setTasks(response.data); 
+            setTasks(response?.data?.todo)
         } catch (error) {
             toast.error("Error fetching tasks");
             console.log("Error in fetchTask:", error)
@@ -47,7 +46,7 @@ const Home = () => {
             const response = await axios.post(`${baseUrl}/todo/add`, { title: newTask }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            // setTasks([...tasks, response.data]);
+            setTasks([...tasks, response.data]);
             console.log(response)
             setNewTask("");
             toast.success("Task added successfully");
@@ -80,9 +79,10 @@ const Home = () => {
                     </button>
 
                     <ul>
-                        {tasks.map((task, index) => (
-                            <li key={index} className="my-2 p-2 border rounded">
-                                {task}
+                        {/* <p>{tasks}</p> */}
+                        {tasks.map((task) => (
+                            <li key={task._id} className="my-2 p-2 border rounded flex justify-between items-center">
+                                <span >{task.title}</span>
                             </li>
                         ))}
                     </ul>
